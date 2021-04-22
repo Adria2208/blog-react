@@ -1,55 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from "react"
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import axios from "axios";
+
 import Blog from "./components/Blog";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Form from "./components/FormContainer";
+import Update from "./components/UpdateContainer";
+import Delete from "./components/Delete";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
-    };
-  }
+import "./App.css";
 
-  componentDidMount() {
-    fetch("http://localhost:8000/api/blogs")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
 
-  render() {
-    const { error, isLoaded, items } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
+export default function App() {
 
-      console.log(items);
-      const blogComponents =  items.map(blog => <Blog key={blog.id} title={blog.title} content={blog.content} />)
+    const [blogs, setBlogs] = useState([]);
 
-      return (
-        <ul>
-          {blogComponents}
-        </ul>
-      );
+    const url = 'http://localhost:8000/api/blogs/'
+
+    const getBlogs = () => {
+        axios.get(url)
+            .then(res => {
+                console.log(res);
+                setBlogs(res.data)
+            })
     }
-  }
+
+    useEffect(() => {
+        getBlogs()
+    }, []);
+
+    const blogComponents = blogs.map(blog => <Blog key={blog.id} id={blog.id} title={blog.title} content={blog.content} />)
+
+    return (
+        <Router>
+            <Navbar />
+            <Switch>
+                <Route path='/form' component={Form} />
+                <Route path='/delete/:id' component={Delete} />
+                <Route path='/update/:id' component={Update} />
+                {/* Importante que esta ruta se quede al final del Switch */}
+                <Route path='/' render={(props) => <Home {...props} blogComponents={blogComponents} />} />
+            </Switch>
+        </Router>
+    )
 }
-export default App
+
+
