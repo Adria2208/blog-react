@@ -18,6 +18,15 @@ function FormComponent(props) {
                     onChange={props.handleChange}
                     placeholder="Content"
                 />
+                <select
+                    value={props.data.destination}
+                    name="destination"
+                    onChange={props.handleChange}
+                >
+                    <option value="">-- Please Choose a profile picture --</option>
+                    <option value="cat">Cat</option>
+                    <option value="dog">Dog</option>
+                </select>
                 <br />
                 <button>Submit</button>
             </form>

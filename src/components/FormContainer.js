@@ -6,10 +6,12 @@ export default function FormContainer2() {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [pfp, setPfp] = useState('');
 
     const blog = {
         'title': title,
-        'content': content
+        'content': content,
+        'pfp': pfp
     }
 
     const handleChange = (event) => {
@@ -19,8 +21,10 @@ export default function FormContainer2() {
             setTitle(value)
         } else if (event.target.name === 'content') {
             setContent(value)
+        } else if (event.target.name === 'pfp') {
+            setPfp(value)
         } else {
-            console.log('Error de logica en el handleChange');
+            console.log('Error de logica en el handleChange de FormContainer.js');
         }
     }
 

@@ -30,7 +30,7 @@ export default function App() {
         getBlogs()
     }, []);
 
-    const blogComponents = blogs.map(blog => <Blog key={blog.id} id={blog.id} title={blog.title} content={blog.content} />)
+    const blogComponents = blogs.map(blog => <Blog key={blog.id} id={blog.id} title={blog.title} content={blog.content} pfp={blog.pfp} />)
 
     return (
         <Router>

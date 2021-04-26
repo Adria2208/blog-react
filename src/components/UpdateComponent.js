@@ -20,6 +20,15 @@ export default function UpdateComponent(props) {
                     onChange={props.handleChange}
                     placeholder="Content"
                 />
+                                <select
+                    value={props.data.destination}
+                    name="pfp"
+                    onChange={props.handleChange}
+                >
+                    <option value="">-- Please Choose a profile picture --</option>
+                    <option value="cat">Cat</option>
+                    <option value="dog">Dog</option>
+                </select>
                 <br />
                 <button>Submit</button>
             </form>

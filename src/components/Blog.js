@@ -1,15 +1,41 @@
 import { Link } from "react-router-dom";
+import DefaultImg from "../imgs/default.png";
+import CatImg from "../imgs/cat.jpg";
+import DogImg from "../imgs/dog.jpg";
 
 function Blog(props) {
-    return (
-        
-        <div className='c-blog'>
-        {console.log(props)}
-            <p className='c-blog__title'>{props.title}</p>
-            <p className='c-blog__content'>{props.content}</p>
 
-            <button className='c-button c-button--secondary--normal'>Update</button>
-            <Link to={'/delete/' + props.id} className='c-button c-button--secondary--danger'>Delete</Link>
+    let pfp = ''
+
+    switch (props.pfp) {
+        case 'cat':
+            pfp = CatImg
+            break
+        case 'dog':
+            pfp = DogImg
+            break
+        default:
+            pfp = DefaultImg
+            break
+
+    }
+
+    return (
+
+        <div className='c-blog'>
+            <div className='l-blog'>
+                <div className='c-pfp'>
+                    <img className='img-fluid' src={pfp} alt='pfp' />
+                </div>
+                <div>
+                    <p className='c-blog__title'>{props.title}</p>
+                    <p className='c-blog__content'>{props.content}</p>
+
+                    <Link to={'/update/' + props.id} className='c-button c-button--secondary--normal'>Update</Link>
+                    <Link to={'/delete/' + props.id} className='c-button c-button--secondary--danger'>Delete</Link>
+
+                </div>
+            </div>
             <hr></hr>
         </div>
     )
