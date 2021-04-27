@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import FormComponent from './FormComponent'
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
-export default function FormContainer2() {
+export default function FormContainer() {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -13,6 +14,8 @@ export default function FormContainer2() {
         'content': content,
         'pfp': pfp
     }
+
+    let history = useHistory();
 
     const handleChange = (event) => {
         const { value } = event.target
@@ -33,9 +36,11 @@ export default function FormContainer2() {
         axios.post('http://localhost:8000/api/blogs', blog)
             .then(response => {
                 console.log(response);
+                history.push("/success");
             })
             .catch(error => {
                 console.log(error);
+                history.push("/error");
             })
     }
 

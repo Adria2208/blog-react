@@ -8,6 +8,8 @@ import Home from "./components/Home";
 import Form from "./components/FormContainer";
 import Update from "./components/UpdateContainer";
 import Delete from "./components/Delete";
+import Success from "./components/Success";
+import Error from "./components/Error";
 
 import "./App.css";
 
@@ -39,6 +41,8 @@ export default function App() {
                 <Route path='/form' component={Form} />
                 <Route path='/delete/:id' component={Delete} />
                 <Route path='/update/:id' component={Update} />
+                <Route path='/success' component={Success} />
+                <Route path='/error' component={Error} />
                 {/* Importante que esta ruta se quede al final del Switch */}
                 <Route path='/' render={(props) => <Home {...props} blogComponents={blogComponents} />} />
             </Switch>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from "axios";
 
 export default function Delete() {
     const [blog, setBlog] = useState([]);
 
     let { id } = useParams();
+    let history = useHistory();
 
     const url = 'http://localhost:8000/api/blogs/' + id
 
@@ -26,7 +27,9 @@ export default function Delete() {
             .delete(url)
             .catch(err => {
                 console.log(err);
+                history.push("/error");
             });
+        history.push("/success");
     }
 
     return (

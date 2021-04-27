@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import UpdateComponent from './UpdateComponent'
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 export default function UpdateContainer() {
 
@@ -17,6 +17,8 @@ export default function UpdateContainer() {
         'content': content,
         'pfp': pfp
     }
+
+    let history = useHistory();
 
     const getBlog = () => {
         axios.get(url)
@@ -46,7 +48,15 @@ export default function UpdateContainer() {
     const submitHandler = (event) => {
         event.preventDefault()
         axios.put(url, blog)
-            .then(res => console.log(res.data));
+            .then(res => {
+                console.log(res.data)
+                history.push("/success");
+            })
+            .catch(error => {
+                console.log(error);
+                history.push("/error");
+            });
+            
     }
 
     return (
