@@ -21,11 +21,11 @@ export default function UpdateComponent(props) {
                     placeholder="Content"
                 />
                                 <select
-                    value={props.data.destination}
+                    value={props.data.pfp}
                     name="pfp"
                     onChange={props.handleChange}
                 >
-                    <option value="">-- Please Choose a profile picture --</option>
+                    <option value="default">-- Please Choose a profile picture --</option>
                     <option value="cat">Cat</option>
                     <option value="dog">Dog</option>
                 </select>

@@ -10,7 +10,7 @@ export default function UpdateContainer() {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [pfp, setPfp] = useState('');
+    const [pfp, setPfp] = useState('default');
 
     const blog = {
         'title': title,
@@ -24,6 +24,10 @@ export default function UpdateContainer() {
         axios.get(url)
             .then(res => {
                 console.log(res);
+                setTitle(res.data.title)
+                setContent(res.data.content)
+                setPfp(res.data.pfp)
+
             })
     }
 
@@ -56,7 +60,6 @@ export default function UpdateContainer() {
                 console.log(error);
                 history.push("/error");
             });
-            
     }
 
     return (

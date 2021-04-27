@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import FormComponent from './FormComponent'
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
@@ -7,7 +7,7 @@ export default function FormContainer() {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [pfp, setPfp] = useState('');
+    const [pfp, setPfp] = useState('default');
 
     const blog = {
         'title': title,
@@ -20,6 +20,8 @@ export default function FormContainer() {
     const handleChange = (event) => {
         const { value } = event.target
 
+        console.log(event.target.name);
+
         if (event.target.name === 'title') {
             setTitle(value)
         } else if (event.target.name === 'content') {
@@ -30,6 +32,11 @@ export default function FormContainer() {
             console.log('Error de logica en el handleChange de FormContainer.js');
         }
     }
+
+    useEffect(() => {
+        console.log('blog');
+        console.log(blog);
+    }, [blog])
 
     const submitHandler = (event) => {
         event.preventDefault()
