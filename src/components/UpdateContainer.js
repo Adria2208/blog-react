@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import UpdateComponent from './UpdateComponent'
 import axios from "axios";
 import { useParams, useHistory } from 'react-router-dom';
@@ -7,6 +7,8 @@ export default function UpdateContainer() {
 
     let { id } = useParams();
     const url = 'http://localhost:8000/api/blogs/' + id
+
+    const ref = useRef();
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -23,11 +25,10 @@ export default function UpdateContainer() {
     const getBlog = () => {
         axios.get(url)
             .then(res => {
-                console.log(res);
                 setTitle(res.data.title)
                 setContent(res.data.content)
                 setPfp(res.data.pfp)
-
+                ref.current.switchPfp()
             })
     }
 
@@ -40,10 +41,14 @@ export default function UpdateContainer() {
 
         if (event.target.name === 'title') {
             setTitle(value)
+            blog.title = (value)
         } else if (event.target.name === 'content') {
             setContent(value)
+            blog.content = (value)
         } else if (event.target.name === 'pfp') {
             setPfp(value)
+            blog.pfp = (value)
+            ref.current.switchPfp()
         } else {
             console.log('Error de logica en el handleChange');
         }
@@ -51,20 +56,19 @@ export default function UpdateContainer() {
 
     const submitHandler = (event) => {
         event.preventDefault()
+        
         axios.put(url, blog)
             .then(res => {
-                console.log(res.data)
                 history.push("/success");
             })
             .catch(error => {
-                console.log(error);
                 history.push("/error");
             });
     }
 
     return (
         <div>
-            <UpdateComponent handleChange={handleChange} submitHandler={submitHandler} data={blog} />
+            <UpdateComponent handleChange={handleChange} submitHandler={submitHandler} data={blog} ref={ref}/>
         </div>
     )
 }

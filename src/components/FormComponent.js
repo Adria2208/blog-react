@@ -1,6 +1,31 @@
-import React from "react"
+import React, { useState, forwardRef, useImperativeHandle } from "react"
+import { Link } from "react-router-dom";
 
-function FormComponent(props) {
+import DefaultImg from "../imgs/default.png";
+import CatImg from "../imgs/cat.jpg";
+import DogImg from "../imgs/dog.jpg";
+
+const FormComponent = forwardRef((props, ref) => {
+
+    const [pfp, setPfp] = useState('default')
+    
+    useImperativeHandle(ref,() => ({switchPfp}))
+    
+    const switchPfp = () => {
+
+        switch (props.data.pfp) {
+            case "cat":
+                setPfp(CatImg)
+                break;
+            case "dog":
+                setPfp(DogImg)
+                break;
+            default:
+                setPfp(DefaultImg)
+                break;
+        }
+    }
+
     return (
         <main>
             <form onSubmit={props.submitHandler}>
@@ -10,7 +35,7 @@ function FormComponent(props) {
                     onChange={props.handleChange}
                     placeholder="Title"
                 />
-                <br />
+                
 
                 <input
                     name="content"
@@ -27,16 +52,15 @@ function FormComponent(props) {
                     <option value="cat">Cat</option>
                     <option value="dog">Dog</option>
                 </select>
-                <br />
-                <button>Submit</button>
+                <div className='c-pfp'>
+                        <img className='img-fluid' src={pfp} alt='pfp' />
+                    </div>
+                
+                <Link className="c-button c-button--secondary--alt" to='/'>Cancelar</Link>
+                <button className='c-button c-button--secondary--normal'>Subir</button>
             </form>
-            <hr />
-            <h2>Entered information:</h2>
-            <p>Your title: {props.data.title} </p>
-            <p>Your content: {props.data.content}</p>
-            <p>Your pfp: {props.data.pfp}</p>
         </main>
     )
-}
+})
 
 export default FormComponent

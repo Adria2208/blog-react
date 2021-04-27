@@ -386,6 +386,12 @@ html {
   align-items: center;
 }
 
+.l-form {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
 .c-blog {
   padding-left: 25px;
   line-height: normal;
@@ -481,6 +487,10 @@ html {
 
 .c-button--tertiary--danger {
   color: red;
+}
+
+.c-pfp {
+  margin-right: 25px;
 }
 
 .c-pfp img {

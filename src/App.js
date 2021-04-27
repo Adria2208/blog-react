@@ -23,7 +23,6 @@ export default function App() {
     const getBlogs = () => {
         axios.get(url)
             .then(res => {
-                console.log(res);
                 setBlogs(res.data)
             })
     }

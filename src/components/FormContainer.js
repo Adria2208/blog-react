@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import FormComponent from './FormComponent'
-import { useHistory } from 'react-router-dom';
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 export default function FormContainer() {
+
+    const ref = useRef();
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -20,39 +22,38 @@ export default function FormContainer() {
     const handleChange = (event) => {
         const { value } = event.target
 
-        console.log(event.target.name);
-
         if (event.target.name === 'title') {
             setTitle(value)
+            blog.title = (value)
         } else if (event.target.name === 'content') {
             setContent(value)
+            blog.content = (value)
         } else if (event.target.name === 'pfp') {
             setPfp(value)
+            blog.pfp = (value)
+            ref.current.switchPfp()
         } else {
             console.log('Error de logica en el handleChange de FormContainer.js');
         }
     }
 
     useEffect(() => {
-        console.log('blog');
-        console.log(blog);
-    }, [blog])
+        ref.current.switchPfp()
+    }, [])
 
     const submitHandler = (event) => {
         event.preventDefault()
         axios.post('http://localhost:8000/api/blogs', blog)
             .then(response => {
-                console.log(response);
                 history.push("/success");
             })
             .catch(error => {
-                console.log(error);
                 history.push("/error");
             })
     }
 
     return (
-        <FormComponent handleChange={handleChange} submitHandler={submitHandler} data={blog} />
+        <FormComponent handleChange={handleChange} submitHandler={submitHandler} data={blog} ref={ref}/>
     )
 
 }

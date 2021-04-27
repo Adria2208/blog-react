@@ -31,8 +31,10 @@ function Blog(props) {
                     <p className='c-blog__title'>{props.title}</p>
                     <p className='c-blog__content'>{props.content}</p>
 
-                    <Link to={'/update/' + props.id} className='c-button c-button--secondary--normal'>Update</Link>
-                    <Link to={'/delete/' + props.id} className='c-button c-button--secondary--danger'>Delete</Link>
+                    <Link to={'/'} className='c-button c-button--primary--normal'>Ver</Link>
+                    <Link to={'/update/' + props.id} className='c-button c-button--primary--alt'>Editar</Link>
+                    <Link to={'/delete/' + props.id} className='c-button c-button--primary--danger'>Borrar</Link>
+
 
                 </div>
             </div>

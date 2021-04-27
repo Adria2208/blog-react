@@ -26,7 +26,6 @@ export default function Delete() {
         axios
             .delete(url)
             .catch(err => {
-                console.log(err);
                 history.push("/error");
             });
         history.push("/success");
@@ -34,9 +33,8 @@ export default function Delete() {
 
     return (
         <div>
-            {console.log(blog)}
-            <h1>¿Seguro que quieres borrar el blog {blog.title}? </h1>
-            <button className='c-button c-button--primary--normal'>No</button>
+            <h1>¿Seguro que quieres borrar el blog "{blog.title}"? </h1>
+            <button className='c-button c-button--primary--alt'>No</button>
             <button className='c-button c-button--primary--danger' onClick={deleteBlog}>Si</button>
         </div>
     )
