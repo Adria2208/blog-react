@@ -1,3 +1,11 @@
+@font-face {
+  font-family: Montserrat;
+  src: url("./fonts/Montserrat-Regular.ttf");
+}
+* {
+  font-family: Montserrat;
+}
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -382,22 +390,80 @@ html {
 }
 
 .l-blog {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  margin-top: 25px;
+}
+.l-blog--full {
+  margin-top: 25px;
+  margin-right: 25px;
+}
+.l-blog__title {
   display: flex;
   align-items: center;
+  margin-bottom: 25px;
 }
 
+@media (max-width: 450px) {
+  .l-blog {
+    grid-template-columns: 1fr;
+  }
+}
 .l-form {
   padding: 25px;
   display: flex;
   flex-direction: column;
 }
+.l-form__pfp {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+.l-form__pfp .c-pfp {
+  margin-top: 0;
+}
 
+@media (max-width: 750px) {
+  .l-form__pfp {
+    flex-direction: column;
+  }
+  .l-form__pfp .c-pfp {
+    margin-top: 25px;
+  }
+}
+.l-delete {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.l-delete h1 {
+  text-align: center;
+  margin-right: 25px;
+  margin-left: 25px;
+}
+
+.l-buttons {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 450px) {
+  .l-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
 .c-blog {
   padding-left: 25px;
   line-height: normal;
 }
 .c-blog__title {
   font-size: 2rem;
+  font-weight: 500;
 }
 .c-blog__content {
   margin-bottom: 25px;
@@ -489,15 +555,61 @@ html {
   color: red;
 }
 
+@media (max-width: 450px) {
+  .c-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+}
 .c-pfp {
+  margin-top: 25px;
   margin-right: 25px;
+  margin-left: 25px;
 }
 
 .c-pfp img {
-  border-radius: 360px;
+  border-radius: 100%;
   width: 75px;
   height: 75px;
+  min-width: 75px;
+  min-height: 75px;
   object-fit: cover;
+}
+
+@media (max-width: 450px) {
+  .c-pfp {
+    margin-left: 0;
+  }
+}
+.c-form__h1 {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+.c-form__title {
+  width: 400px;
+  margin-bottom: 25px;
+  height: 35px;
+  font-size: 24px;
+  transition: all 0.3s ease-in-out;
+}
+.c-form__content {
+  height: 400px;
+  font-size: 18px;
+}
+.c-form__pfp {
+  height: 35px;
+  font-size: 18px;
+}
+
+@media (max-width: 750px) {
+  .c-form__title {
+    width: 100%;
+  }
+  .c-form__pfp {
+    width: 100%;
+    font-size: 12px;
+  }
 }
 
 /*# sourceMappingURL=App.css.map */

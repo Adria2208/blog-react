@@ -33,9 +33,13 @@ export default function Delete() {
 
     return (
         <div>
-            <h1>¿Seguro que quieres borrar el blog "{blog.title}"? </h1>
-            <button className='c-button c-button--primary--alt'>No</button>
-            <button className='c-button c-button--primary--danger' onClick={deleteBlog}>Si</button>
+            <div className='l-delete'>
+                <h1>¿Seguro que quieres borrar el blog "{blog.title}"? </h1>
+                <div className='l-buttons'>
+                    <a href='/' className='c-button c-button--primary--alt'>No</a>
+                    <button className='c-button c-button--primary--danger' onClick={deleteBlog}>Si</button>
+                </div>
+            </div>
         </div>
     )
 }

@@ -8,9 +8,9 @@ import DogImg from "../imgs/dog.jpg";
 const FormComponent = forwardRef((props, ref) => {
 
     const [pfp, setPfp] = useState('default')
-    
-    useImperativeHandle(ref,() => ({switchPfp}))
-    
+
+    useImperativeHandle(ref, () => ({ switchPfp }))
+
     const switchPfp = () => {
 
         switch (props.data.pfp) {
@@ -27,39 +27,52 @@ const FormComponent = forwardRef((props, ref) => {
     }
 
     return (
-        <main>
-            <form onSubmit={props.submitHandler}>
-                <input
-                    name="title"
-                    value={props.data.title}
-                    onChange={props.handleChange}
-                    placeholder="Title"
-                />
-                
+        <div>
+            <main>
+                <form className='c-form' onSubmit={props.submitHandler}>
+                    <div className='l-form'>
+                        <h1 className='c-form__h1'>Inserta los datos</h1>
+                        <input
+                            className='c-form__title'
 
-                <input
-                    name="content"
-                    value={props.data.content}
-                    onChange={props.handleChange}
-                    placeholder="Content"
-                />
-                <select
-                    name="pfp"
-                    value={props.data.pfp}
-                    onChange={props.handleChange}
-                >
-                    <option value="default">-- Please Choose a profile picture --</option>
-                    <option value="cat">Cat</option>
-                    <option value="dog">Dog</option>
-                </select>
-                <div className='c-pfp'>
-                        <img className='img-fluid' src={pfp} alt='pfp' />
+                            name="title"
+                            value={props.data.title}
+                            onChange={props.handleChange}
+                            placeholder="Titulo"
+                        />
+                        <textarea
+                            className='c-form__content'
+
+                            name="content"
+                            value={props.data.content}
+                            onChange={props.handleChange}
+                            placeholder="Contenido"
+
+                        />
+                        <div className='l-form__pfp'>
+                            <select
+                                className='c-form__pfp'
+
+                                value={props.data.pfp}
+                                name="pfp"
+                                onChange={props.handleChange}
+                            >
+                                <option value="default">-- Por favor escoje una foto de perfil --</option>
+                                <option value="cat">Gato</option>
+                                <option value="dog">Perro</option>
+                            </select>
+                            <div className='c-pfp'>
+                                <img className='img-fluid' src={pfp} alt='pfp' />
+                            </div>
+                        </div>
+                        <div className='l-buttons'>
+                            <Link className="c-button c-button--secondary--alt" to='/'>Cancelar</Link>
+                            <button className='c-button c-button--secondary--normal'>Subir</button>
+                        </div>
                     </div>
-                
-                <Link className="c-button c-button--secondary--alt" to='/'>Cancelar</Link>
-                <button className='c-button c-button--secondary--normal'>Subir</button>
-            </form>
-        </main>
+                </form>
+            </main>
+        </div>
     )
 })
 

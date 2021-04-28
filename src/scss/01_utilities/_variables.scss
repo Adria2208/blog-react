@@ -1,5 +1,17 @@
+@font-face {
+    font-family: Montserrat;
+    src: url('./fonts/Montserrat-Regular.ttf');
+}
+
+* {
+    font-family: Montserrat
+}
+
 $colors:(
     "normal": aqua,
     "alt": orange,
     "danger": red
 );
+
+$phone: 450px;
+$tablet: 750px;

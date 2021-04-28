@@ -2,4 +2,29 @@
     padding: 25px;
     display: flex;
     flex-direction: column;
+
+    &__pfp{
+        display: flex;
+        align-items: center;
+
+        margin-top: 25px;
+
+        .c-pfp{
+            margin-top: 0;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .l-form{
+    
+        &__pfp{
+            flex-direction: column;
+
+            .c-pfp{
+                margin-top: 25px;
+            }
+
+        }
+    }
 }

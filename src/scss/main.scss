@@ -1,4 +1,3 @@
-// IMPORTS
 
 //UTILITIES
 @import '01_utilities/variables';
@@ -14,6 +13,8 @@
 //LAYOUTS
 @import '03_layout/l-blog';
 @import '03_layout/l-form';
+@import '03_layout/l-delete';
+@import '03_layout/l-buttons';
 
 
 //COMPONENTS
@@ -21,6 +22,7 @@
 @import '04_components/c-navbar';
 @import '04_components/c-button';
 @import '04_components/c-pfp';
+@import '04_components/c-form';
 
 // GLOBALS
 //@import '06_global/g--ejemplo';

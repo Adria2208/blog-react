@@ -1,4 +1,24 @@
 .l-blog{
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+
+    margin-top: 25px;
+
+    &--full{
+        margin-top: 25px;
+        margin-right: 25px;
+    }
+
+    &__title{
+        display: flex;
+        align-items: center;
+
+        margin-bottom: 25px;
+    }
 }
+
+@media (max-width: $phone) {
+    .l-blog{
+        grid-template-columns: 1fr;
+    }
+  }
